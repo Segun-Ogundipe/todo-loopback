@@ -1,15 +1,21 @@
 {
   "ids": {
-    "Todo": 7
+    "Todo": 7,
+    "TodoList": 4
   },
   "models": {
     "Todo": {
-      "1": "{\"title\":\"Take over the galaxy\",\"desc\":\"MWAHAHAHAHAHAHAHAHAHAHAHAHAMWAHAHAHAHAHAHAHAHAHAHAHAHA\",\"id\":1}",
-      "2": "{\"title\":\"destroy alderaan\",\"desc\":\"Make sure there are no survivors left!\",\"id\":2}",
-      "3": "{\"title\":\"play space invaders\",\"desc\":\"Become the very best!\",\"id\":3}",
-      "4": "{\"title\":\"crush rebel scum\",\"desc\":\"Every.Last.One.\",\"id\":4}",
-      "5": "{\"title\":\"string\",\"desc\":\"string\",\"isComplete\":true,\"id\":5}",
-      "6": "{\"title\":\"My second todo\",\"desc\":\"Just a description of my second todo\",\"isComplete\":false,\"id\":6}"
+      "1": "{\"title\":\"Take over the galaxy\",\"desc\":\"MWAHAHAHAHAHAHAHAHAHAHAHAHAMWAHAHAHAHAHAHAHAHAHAHAHAHA\",\"todoListId\":1,\"id\":1}",
+      "2": "{\"title\":\"destroy alderaan\",\"desc\":\"Make sure there are no survivors left!\",\"todoListId\":1,\"id\":2}",
+      "3": "{\"title\":\"play space invaders\",\"desc\":\"Become the very best!\",\"todoListId\":2,\"id\":3}",
+      "4": "{\"title\":\"crush rebel scum\",\"desc\":\"Every.Last.One.\",\"todoListId\":1,\"id\":4}",
+      "5": "{\"title\":\"get eggs\",\"isComplete\":false,\"remindAtAddress\":\"4th street\",\"todoListId\":3,\"id\":5}",
+      "6": "{\"title\":\"get eggs\",\"isComplete\":false,\"remindAtAddress\":\"10th St NE Washington, DC 20002, USA\",\"todoListId\":3,\"id\":6}"
+    },
+    "TodoList": {
+      "1": "{\"title\":\"Sith lord's check list\",\"lastModified\":\"a long time ago\",\"id\":1}",
+      "2": "{\"title\":\"My daily chores\",\"lastModified\":\"2018-07-13\",\"id\":2}",
+      "3": "{\"title\":\"groceries list\",\"id\":3}"
     }
   }
 }
