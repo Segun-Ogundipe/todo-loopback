@@ -1,3 +1,4 @@
+import {inject} from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -19,11 +20,13 @@ import {
 } from '@loopback/rest';
 import {Todo} from '../models';
 import {TodoRepository} from '../repositories';
+import {Geocoder} from '../services';
 
 export class TodoController {
   constructor(
     @repository(TodoRepository)
-    public todoRepository : TodoRepository,
+    public todoRepository: TodoRepository,
+    @inject('services.Geocoder') protected geoService: Geocoder,
   ) {}
 
   @post('/todos', {
@@ -47,6 +50,10 @@ export class TodoController {
     })
     todo: Omit<Todo, 'id'>,
   ): Promise<Todo> {
+    if (todo.remindAtAddress) {
+      const geo = await this.geoService.geocode(todo.remindAtAddress);
+      todo.remindAtGeo = '${geo[0].y},${geo[0].x}';
+    }
     return this.todoRepository.create(todo);
   }
 
@@ -80,7 +87,8 @@ export class TodoController {
     },
   })
   async find(
-    @param.query.object('filter', getFilterSchemaFor(Todo)) filter?: Filter<Todo>,
+    @param.query.object('filter', getFilterSchemaFor(Todo))
+    filter?: Filter<Todo>,
   ): Promise<Todo[]> {
     return this.todoRepository.find(filter);
   }
@@ -121,7 +129,8 @@ export class TodoController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.query.object('filter', getFilterSchemaFor(Todo)) filter?: Filter<Todo>
+    @param.query.object('filter', getFilterSchemaFor(Todo))
+    filter?: Filter<Todo>,
   ): Promise<Todo> {
     return this.todoRepository.findById(id, filter);
   }
